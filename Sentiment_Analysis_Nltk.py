@@ -1,17 +1,8 @@
-
-# coding: utf-8
-
-# In[12]:
-
-
 import nltk.classify.util
 from nltk.classify import NaiveBayesClassifier
 from nltk.corpus import movie_reviews
 from nltk.corpus import stopwords
 from nltk.tokenize import word_tokenize
-
-
-# In[13]:
 
 
 # This is how the Naive Bayes classifier expects the input
@@ -23,9 +14,6 @@ def create_word_features(words):
 create_word_features(["the", "quick", "brown", "quick", "a", "fox"])
 
 
-# In[14]:
-
-
 neg_reviews = []
 for fileid in movie_reviews.fileids('neg'):
     words = movie_reviews.words(fileid)
@@ -34,8 +22,6 @@ for fileid in movie_reviews.fileids('neg'):
 print(neg_reviews[0])    
 print(len(neg_reviews))
 
-
-# In[15]:
 
 
 pos_reviews = []
@@ -47,28 +33,21 @@ for fileid in movie_reviews.fileids('pos'):
 print(len(pos_reviews))
 
 
-# In[16]:
-
 
 train_set = neg_reviews[:750] + pos_reviews[:750]
 test_set =  neg_reviews[750:] + pos_reviews[750:]
 print(len(train_set),  len(test_set))
 
 
-# In[17]:
-
 
 classifier = NaiveBayesClassifier.train(train_set)
 
-
-# In[18]:
 
 
 accuracy = nltk.classify.util.accuracy(classifier, test_set)
 print(accuracy * 100)
 
 
-# In[8]:
 
 
 review_santa = '''
@@ -80,15 +59,11 @@ The worst acting job in here must be when Mother Claus and her elves have been "
 print(review_santa )
 
 
-# In[9]:
-
 
 words = word_tokenize(review_santa)
 words = create_word_features(words)
 classifier.classify(words)
 
-
-# In[10]:
 
 
 review_spirit = '''
@@ -98,8 +73,6 @@ What do however, are the characters. Miyazaki lingers upon the characters as if 
 '''
 print(review_spirit)
 
-
-# In[11]:
 
 
 words = word_tokenize(review_spirit)
